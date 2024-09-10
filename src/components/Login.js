@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom"
 import Header from "./Header"
 import { auth } from './firebase';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
@@ -10,6 +11,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
   
     const handleLogin = async (e) => {
       e.preventDefault();
@@ -22,6 +24,7 @@ export default function Login() {
        
         const user = userCredential.user;
         console.log('Logged in as:', user.email);
+        navigate('/Admin');
       } catch (error) {
         console.error('Login failed:', error.message);
         setError(error.message);

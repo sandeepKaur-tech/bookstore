@@ -8,6 +8,8 @@ import { BrowserRouter ,Routes,Route,Link } from 'react-router-dom';
 import BookDetail from './components/BookDetail';
 import Layout from './components/Layout';
 import Login from './components/Login';
+import Admin from './components/Admin';
+import AddBook from './components/AddBook';
 function App() {
     return(
      <BrowserRouter>
@@ -16,6 +18,8 @@ function App() {
                 <Route path="books" element= {<Home/>}/>
                 <Route path='login' element={<Login/>}/>
                 <Route path= "books/:id" element= {<BookDetail/>}/>
+                <Route path="admin" element= {<Admin/>}/>
+                <Route path="/admin/addBook" element={<AddBook/>}/>
             </Route>
         </Routes>
     </BrowserRouter>
