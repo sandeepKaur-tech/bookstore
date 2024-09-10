@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { db, collection, getDocs } from './firebase';
+import { FaCartPlus } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+
 export default function Home(){
  
     const [booksData, setBooksData]= useState([]);
@@ -25,14 +29,22 @@ export default function Home(){
 return (
     <div>
       <h2>List of Books</h2>
-      <div>
+      <div className='main-book-list'>
         {booksData.map(book => (
-            <>
-            <img src = {book.bookImage}/>
-            <h1>{book.bookName}</h1>
-            <p>{book.bookDescription}</p>
-            <p>{book.status}</p>
-            </>
+         <Link to = {`/books/${book.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className='book-content'>
+                <img className='book-image' src = {book.bookImage}/>
+                <h2>{book.bookName}</h2>
+                <p className='paragraph'>{book.bookDescription}</p>
+                    <div className='icon'>
+                        <p>{book.status}</p>
+                            <div className='icon-gap'>
+                            <FaRegHeart  style={{ fontSize: '1.4em', color:'red' }} />
+                            <FaCartPlus  style={{ fontSize: '1.4em', color: 'brown'}}/>
+                            </div>
+                    </div>
+            </div>
+         </Link>
          
         ))}
       </div>
